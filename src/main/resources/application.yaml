@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: tondeuse
+  datasource:
+    username: postgres
+    password:
+    url: jdbc:postgresql://localhost:5432/tondeuse
+    hikari:
+      maximumPoolSize: 5

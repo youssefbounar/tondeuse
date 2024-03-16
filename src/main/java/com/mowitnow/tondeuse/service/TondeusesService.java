@@ -1,6 +1,6 @@
 package com.mowitnow.tondeuse.service;
 import com.mowitnow.tondeuse.domain.Position;
-import com.mowitnow.tondeuse.shared.constantes.Instruction;
+import com.mowitnow.tondeuse.shared.enums.Instructions;
 import com.mowitnow.tondeuse.shared.constantes.Orientation;
 import org.springframework.stereotype.Service;
 
@@ -31,15 +31,17 @@ public class TondeusesService implements ItondeusesService, Imovable {
      */
     @Override
     public void executeInstructions(String instructions) {
+//        Enum
         for (char instruction : instructions.toCharArray()) {
-            switch (instruction) {
-                case Instruction.G:
+            switch (Instructions.valueOf(String.valueOf(instruction))) {
+                case G:
+//                case Instruction.G:
                     turnLeft();
                     break;
-                case Instruction.D:
+                case D:
                     turnRight();
                     break;
-                case Instruction.A:
+                case A:
                     moveForward();
                     break;
             }
@@ -52,16 +54,16 @@ public class TondeusesService implements ItondeusesService, Imovable {
     @Override
     public void moveForward() {
         switch (position.getOrientation()) {
-            case Orientation.N:
+            case Orientation.NORD:
                 if (position.getY() < position.getMaxY()) position.setY(position.getY() + 1);
                 break;
-            case Orientation.E:
+            case Orientation.EST:
                 if (position.getX() < position.getMaxX()) position.setX(position.getX() + 1);
                 break;
-            case Orientation.S:
+            case Orientation.SUD:
                 if (position.getY() > 0) position.setY(position.getY() - 1);
                 break;
-            case Orientation.W:
+            case Orientation.WEST:
                 if (position.getX() > 0) position.setX(position.getX() - 1);
                 break;
         }
@@ -73,17 +75,17 @@ public class TondeusesService implements ItondeusesService, Imovable {
     @Override
     public void turnLeft() {
         switch (position.getOrientation()) {
-            case Orientation.N:
-                position.setOrientation(Orientation.W);
+            case Orientation.NORD:
+                position.setOrientation(Orientation.WEST);
                 break;
-            case Orientation.E:
-                position.setOrientation(Orientation.N);
+            case Orientation.EST:
+                position.setOrientation(Orientation.NORD);
                 break;
-            case Orientation.S:
-                position.setOrientation(Orientation.E);
+            case Orientation.SUD:
+                position.setOrientation(Orientation.EST);
                 break;
-            case Orientation.W:
-                position.setOrientation(Orientation.S);
+            case Orientation.WEST:
+                position.setOrientation(Orientation.SUD);
                 break;
         }
     }
@@ -94,17 +96,17 @@ public class TondeusesService implements ItondeusesService, Imovable {
     @Override
     public void turnRight() {
         switch (position.getOrientation()) {
-            case Orientation.N:
-                position.setOrientation(Orientation.E);
+            case Orientation.NORD:
+                position.setOrientation(Orientation.EST);
                 break;
-            case Orientation.E:
-                position.setOrientation(Orientation.S);
+            case Orientation.EST:
+                position.setOrientation(Orientation.SUD);
                 break;
-            case Orientation.S:
-                position.setOrientation(Orientation.W);
+            case Orientation.SUD:
+                position.setOrientation(Orientation.WEST);
                 break;
-            case Orientation.W:
-                position.setOrientation(Orientation.N);
+            case Orientation.WEST:
+                position.setOrientation(Orientation.NORD);
                 break;
         }
     }

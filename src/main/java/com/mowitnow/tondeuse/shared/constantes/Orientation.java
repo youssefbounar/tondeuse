@@ -8,20 +8,20 @@ public final class Orientation {
     /**
      * Constant representing the North orientation.
      */
-    public static final char N = 'N';
+    public static final char NORD = 'N';
 
     /**
      * Constant representing the East orientation.
      */
-    public static final char E = 'E';
+    public static final char EST = 'E';
 
     /**
      * Constant representing the South orientation.
      */
-    public static final char S = 'S';
+    public static final char SUD = 'S';
 
     /**
      * Constant representing the West orientation.
      */
-    public static final char W = 'W';
+    public static final char WEST = 'W';
 }
